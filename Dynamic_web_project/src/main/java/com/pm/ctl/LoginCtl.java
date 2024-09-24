@@ -25,22 +25,24 @@ public class LoginCtl extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		UserBean bean = new UserBean();
+		String loginId = req.getParameter("loginId");
+		String password = req.getParameter("password");
 		
-		bean.setLoginId(req.getParameter("loginId"));
-		bean.setPassword(req.getParameter("password"));
-
-		UserModal modal = new UserModal();
+		UserModal model = new UserModal();
 		try {
-			modal.add(bean);
-			req.setAttribute("msg", "Login successfully..!!");
-			RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
-			
-			rd.forward(req, resp);
+			UserBean bean = model.authenticate(loginId, password);
+			if (bean != null) {
+				req.setAttribute("user", bean);
+				RequestDispatcher rd = req.getRequestDispatcher("Welcome.jsp");
+				rd.forward(req, resp);
+			} else {
+				req.setAttribute("msg", "login id & password invalid");
+				RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
+				rd.forward(req, resp);
+			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
