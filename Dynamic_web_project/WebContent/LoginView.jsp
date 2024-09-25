@@ -11,17 +11,17 @@
 	<form action="LoginCtl" method="post">
 		<div align="center">
 			<%
-				String msg = (String) request.getAttribute("msg");
+			String msg = (String) request.getAttribute("msg");
 			%>
 			<h1>Login</h1>
 			<%
-				if (msg != null) {
+			if (msg != null) {
 			%>
 			<h3>
 				<font color="red"><%=msg%></font>
 			</h3>
 			<%
-				}
+			}
 			%>
 			<table>
 				<tr>
@@ -34,8 +34,14 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" value="signIn"></td>
+					<td>
+					<span>
+					    <input type="submit" name="operation" value="signIn">
+						<input type="submit" name="operation" value="signUp"></td>
+						</span>
 				</tr>
+				
+				
 			</table>
 		</div>
 	</form>

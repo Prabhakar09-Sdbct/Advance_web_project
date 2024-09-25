@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.pm.bean.UserBean;
 import com.pm.model.UserModal;
 
-@WebServlet("/UserRegistrationCtl")
-public class UserRegistrationCtl extends HttpServlet {
+@WebServlet("/UserCtl")
+public class UserCtl extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect("UserRegistrationView.jsp");
+		resp.sendRedirect("UserView.jsp");
 	}
 
 	@Override
@@ -48,15 +48,12 @@ public class UserRegistrationCtl extends HttpServlet {
 		UserModal modal = new UserModal();
 		try {
 			modal.add(bean);
-			req.setAttribute("msg", "User registered successfully..!!");
-			RequestDispatcher rd = req.getRequestDispatcher("UserRegistrationView.jsp");
+			req.setAttribute("msg", "User Added successfully..!!");
+			RequestDispatcher rd = req.getRequestDispatcher("UserView.jsp");
 			
 			rd.forward(req, resp);
 		} catch (Exception e) {
-			req.setAttribute("msg", e.getMessage());
-			RequestDispatcher rd = req.getRequestDispatcher("UserRegistrationView.jsp");
-			
-			rd.forward(req, resp);
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
