@@ -37,8 +37,8 @@ public class UserRegistrationCtl extends HttpServlet {
 		bean.setPassword(req.getParameter("password"));
 	    try {
 			bean.setDob(sdf.parse(req.getParameter("dob")));
-			System.out.println(" dob ?>>>"+req.getParameter("dob"));
-			System.out.println(" dob ?>>>"+sdf.parse(req.getParameter("dob")));
+			
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

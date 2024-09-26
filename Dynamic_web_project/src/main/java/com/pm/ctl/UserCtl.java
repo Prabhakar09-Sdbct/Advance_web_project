@@ -37,8 +37,8 @@ public class UserCtl extends HttpServlet {
 		bean.setPassword(req.getParameter("password"));
 	    try {
 			bean.setDob(sdf.parse(req.getParameter("dob")));
-			System.out.println(" dob ?>>>"+req.getParameter("dob"));
-			System.out.println(" dob ?>>>"+sdf.parse(req.getParameter("dob")));
+			
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,6 @@ public class UserCtl extends HttpServlet {
 			
 			rd.forward(req, resp);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

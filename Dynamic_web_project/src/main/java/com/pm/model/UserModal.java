@@ -38,7 +38,7 @@ public class UserModal {
 		psmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
 
 		int i = psmt.executeUpdate();
-		System.out.println(" Data inserted : " + i);
+		
 	}
 
 	public void update(UserBean bean) throws Exception {
@@ -55,7 +55,7 @@ public class UserModal {
 		psmt.setInt(7, bean.getId());
 
 		int i = psmt.executeUpdate();
-		System.out.println(" Data updated : " + i);
+		
 
 	}
 
@@ -67,7 +67,7 @@ public class UserModal {
 		psmt.setInt(1, id);
 
 		int i = psmt.executeUpdate();
-		System.out.println(" Data deleted : " + i);
+		
 
 	}
 
@@ -116,6 +116,10 @@ public class UserModal {
 		StringBuffer sql = new StringBuffer("select * from user where 1=1");
 
 		if (bean != null) {
+
+			
+		}
+		if (bean != null) {
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
 				sql.append(" and first_name like '" + bean.getFirstName() + "%'");
 			}
@@ -148,8 +152,7 @@ public class UserModal {
 
 		return list;
 	}
-	
-	
+
 	public UserBean authenticate(String loginId, String password) throws Exception {
 
 		Connection conn = JDBCDataSourceRb.getConnection();
@@ -178,6 +181,5 @@ public class UserModal {
 
 		return bean;
 	}
-
 
 }
