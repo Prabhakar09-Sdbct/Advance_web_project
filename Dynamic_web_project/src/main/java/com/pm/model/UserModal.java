@@ -134,6 +134,8 @@ public class UserModal {
 			sql.append(" limit " + pageNo + "," + pageSize);
 		}
 
+		System.out.println("sql"+sql.toString());
+		
 		PreparedStatement psmt = con.prepareStatement(sql.toString());
 
 		List list = new ArrayList();
