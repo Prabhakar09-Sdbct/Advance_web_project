@@ -21,28 +21,43 @@ public class UserCtl extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect("UserView.jsp");
+
+		String id = req.getParameter("id");
+
+		UserModal model = new UserModal();
+
+		if (id != null) {
+			try {
+				UserBean bean = model.findByPk(Integer.parseInt(id));
+				req.setAttribute("bean", bean);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
+		RequestDispatcher rd = req.getRequestDispatcher("UserView.jsp");
+		rd.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		UserBean bean = new UserBean();
-		
+
 		bean.setFirstName(req.getParameter("firstName"));
 		bean.setLastName(req.getParameter("lastName"));
 		bean.setLoginId(req.getParameter("loginId"));
 		bean.setPassword(req.getParameter("password"));
-	    try {
+		try {
 			bean.setDob(sdf.parse(req.getParameter("dob")));
-			
-			
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		bean.setAddress(req.getParameter("address"));
 
 		UserModal modal = new UserModal();
@@ -50,12 +65,11 @@ public class UserCtl extends HttpServlet {
 			modal.add(bean);
 			req.setAttribute("msg", "User Added successfully..!!");
 			RequestDispatcher rd = req.getRequestDispatcher("UserView.jsp");
-			
+
 			rd.forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
 	}
 

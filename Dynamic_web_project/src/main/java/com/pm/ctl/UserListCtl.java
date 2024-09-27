@@ -56,7 +56,7 @@ public class UserListCtl extends HttpServlet {
 		}
 
 		if (op.equals("next")) {
-			System.out.println("req.getParameter(\"pageNo\")"+req.getParameter("pageNo"));
+			System.out.println("req.getParameter(\"pageNo\")" + req.getParameter("pageNo"));
 			pageNo = Integer.parseInt(req.getParameter("pageNo"));
 			pageNo++;
 		}
@@ -64,6 +64,23 @@ public class UserListCtl extends HttpServlet {
 		if (op.equals("previous")) {
 			pageNo = Integer.parseInt(req.getParameter("pageNo"));
 			pageNo--;
+		}
+
+		if (op.equals("add")) {
+			resp.sendRedirect("UserView.jsp");
+		}
+
+		if (op.equals("delete")) {
+			String[] ids = req.getParameterValues("ids");
+
+			for (String id : ids) {
+				try {
+					model.delete(Integer.parseInt(id));
+					req.setAttribute("msg", "Data deleted successfully");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 		try {
