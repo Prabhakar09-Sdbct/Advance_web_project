@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pm.bean.UserBean;
 import com.pm.model.UserModal;
 
-@WebServlet("/UserCtl")
+@WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet {
 
 	@Override
@@ -43,6 +43,8 @@ public class UserCtl extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String op = req.getParameter("operation");
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		UserBean bean = new UserBean();
@@ -60,17 +62,31 @@ public class UserCtl extends HttpServlet {
 
 		bean.setAddress(req.getParameter("address"));
 
-		UserModal modal = new UserModal();
-		try {
-			modal.add(bean);
-			req.setAttribute("msg", "User Added successfully..!!");
-			RequestDispatcher rd = req.getRequestDispatcher("UserView.jsp");
-
-			rd.forward(req, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
+		UserModal model = new UserModal();
+		if (op.equals("save")) {
+			try {
+				model.add(bean);
+				req.setAttribute("msg", "User Added Successfully...!");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
+		if (op.equals("update")) {
+			try {
+				System.out.println("op"+op);
+				bean.setId(Integer.parseInt(req.getParameter("id")));
+				model.update(bean);
+				bean = model.findByPk(bean.getId());
+				req.setAttribute("bean", bean);
+				req.setAttribute("msg", "User Updated Successfully...!");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		RequestDispatcher rd = req.getRequestDispatcher("UserView.jsp");
+		rd.forward(req, resp);
 	}
 
 }

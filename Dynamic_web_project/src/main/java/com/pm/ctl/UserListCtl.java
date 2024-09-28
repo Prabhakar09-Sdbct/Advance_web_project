@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pm.bean.UserBean;
 import com.pm.model.UserModal;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 
 	@Override

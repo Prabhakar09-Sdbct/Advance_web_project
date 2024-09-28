@@ -44,7 +44,7 @@ public class UserModal {
 	public void update(UserBean bean) throws Exception {
 		Connection con = JDBCDataSourceRb.getConnection();
 		PreparedStatement psmt = con.prepareStatement(
-				"update user set first_name = ?, last_name = ?, login_id = ?, password = ?, address = ? where id = ?");
+				"update user set first_name = ?, last_name = ?, login_id = ?, password = ?, address = ?, dob = ? where id = ?");
 
 		psmt.setString(1, bean.getFirstName());
 		psmt.setString(2, bean.getLastName());
