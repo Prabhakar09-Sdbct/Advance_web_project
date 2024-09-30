@@ -19,7 +19,11 @@
 		<%=user.getFirstName()%></h3>
 		<a href="UserCtl.do"><b>Add User</b></a>
 		<b>|</b>
-		<a href="UserListCtl.do"><b>UserList</b></a>
+		<a href="UserListCtl.do"><b>User List</b></a>
+		<b>|</b>
+		<a href="MarksheetCtl.do"><b>Add Marksheet</b></a>
+		<b>|</b>
+		<a href="MarksheetListCtl.do"><b>Marksheet List</b></a>
 		<b>|</b>
 		<a href="LoginCtl?operation=logout"><b>Logout</b></a>
 		<b>|</b>

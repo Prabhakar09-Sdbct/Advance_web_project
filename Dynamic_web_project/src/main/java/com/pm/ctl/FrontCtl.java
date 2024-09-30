@@ -27,9 +27,11 @@ public class FrontCtl implements Filter {
 
 		System.out.println(" uri " + uri);
 
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		
-		System.out.println("session"+session.getAttribute("uri"));
+		if(session.getId() != null) {
+			System.out.println("session"+session.getId());
+		} 
 
 		if (session.getAttribute("user") == null) {
 			req.setAttribute("msg", "Session expired...plz login again..!!");
