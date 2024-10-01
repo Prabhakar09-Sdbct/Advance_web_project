@@ -31,7 +31,7 @@
 		} else {
 	%>
 	<h3>Hi, Guest</h3>
-	<a href="WelcomeCtl"><b>Welcome</b></a>
+	<a href="WelcomeCtl.do"><b>Welcome</b></a>
 	<a href="LoginCtl"><b>Login</b></a>
 	<%
 		}
