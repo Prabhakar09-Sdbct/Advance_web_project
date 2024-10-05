@@ -23,7 +23,10 @@ public class LoginCtl extends HttpServlet {
 
 		if (op != null && op.equals("logout")) {
 			HttpSession session = req.getSession(false);
-			session.invalidate();
+			
+			if(session != null){
+				session.invalidate();
+			}
 		}
 		resp.sendRedirect("LoginView.jsp");
 	}
